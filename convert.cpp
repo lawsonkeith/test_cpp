@@ -24,6 +24,9 @@ int Convert(string str)
 	// convert user input to upper case
 	transform(str.begin(),str.end(),str.begin(), ::toupper);
 
+	// padding error fix
+	str.erase(remove(str.begin(),str.end(),' '),str.end());
+
 	// look for a match
 	for( i=0;i<MAX_CONVERT;i++){
 		if(str == conv[i]){
