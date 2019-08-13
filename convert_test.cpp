@@ -1,18 +1,37 @@
 #include "convert.cpp"
 #include <gtest/gtest.h>
  
-TEST(ConvertTest, PositiveNos) 
+TEST(ConvertTest, OneToTen) 
     { 
-    ASSERT_EQ(6, Convert(36.0));
-    ASSERT_EQ(18.0, Convert(324.0));
-    ASSERT_EQ(25.4, Convert(645.16));
-    ASSERT_EQ(0, Convert(0.0));
+    ASSERT_EQ(1, Convert("I"));
+    ASSERT_EQ(3, Convert("III"));
+    ASSERT_EQ(100, Convert("C"));
+    ASSERT_EQ(12, Convert("XII"));
+    }
+
+TEST(ConvertTest, OneToTenLower) 
+    { 
+    ASSERT_EQ(1, Convert("i"));
+    ASSERT_EQ(3, Convert("IiI"));
+    ASSERT_EQ(100, Convert("c"));
+    ASSERT_EQ(12, Convert("XiI"));
     }
  
-TEST(ConvertTest, NegativeNos) 
+TEST(ConvertTest, OverRun) 
     {
-    ASSERT_EQ(-1.0, Convert(-15.0));
-    ASSERT_EQ(-1.0, Convert(-0.2));
+    ASSERT_EQ(-1, Convert("D"));
+    }
+
+TEST(ConvertTest, Error)
+    {	
+    ASSERT_EQ(-1,Convert("Hi there"));
+    ASSERT_EQ(-1,Convert(""));
+    }
+
+TEST(ConvertTest, PadError)
+    {	
+    ASSERT_EQ(3,Convert("III "));
+    ASSERT_EQ(1,Convert("  I  "));
     }
  
 int main(int argc, char **argv) 
